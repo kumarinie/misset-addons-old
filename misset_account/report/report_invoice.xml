@@ -30,6 +30,24 @@
               </t>
             </t>
         </xpath>
+        <xpath expr="//div[1]/div[@class='col-xs-4']/span[last()]" position="after">
+            <t t-if="o.type == 'out_refund'">
+                <br/>
+                <span t-if="o.type == 'out_refund'">Credit For Invoice</span>
+            </t>
+        </xpath>
+        <xpath expr="//div[1]/div[@class='col-xs-1']/span[last()]" position="after">
+            <t t-if="o.type == 'out_refund'">
+                 <br/>
+                <span><strong> </strong></span>
+            </t>
+        </xpath>
+        <xpath expr="//div[1]/div[@class='col-xs-7']/span[last()]" position="after">
+            <t t-if="o.type == 'out_refund'">
+                 <br/>
+                 <span t-field="o.origin"/>
+            </t>
+        </xpath>
 </template>
 
 
