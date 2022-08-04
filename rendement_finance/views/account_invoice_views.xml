@@ -1,0 +1,15 @@
+<odoo>
+  <data>
+      <record id="invoice_supplier_tree_inherit_rendement_finance" model="ir.ui.view">
+          <field name="name">account.invoice.supplier.tree.rendement_finance</field>
+          <field name="model">account.invoice</field>
+          <field name="inherit_id" ref="account.invoice_supplier_tree"/>
+         <field name="groups_id" eval="[(4, ref('rendement_finance.rendement_finance_access'))]"/>
+          <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']" position="before">
+                <field name="line_account_analytic_id" groups="analytic.group_analytic_accounting"/>
+            </xpath>
+          </field>
+    </record>
+  </data>
+</odoo>
