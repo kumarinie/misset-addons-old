@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="rendement_finance_access" model="res.groups">
+	    <field name="name">Rendement Finance</field>
+	    <field name="category_id" ref="base.module_category_extra"/>
+	</record>
+</odoo>
