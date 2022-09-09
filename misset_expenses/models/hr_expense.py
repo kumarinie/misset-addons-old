@@ -59,3 +59,21 @@ class HrExpense(models.Model):
         if self.analytic_tag_ids:
             move_line.update({'analytic_tag_ids': [(6, 0, self.analytic_tag_ids.ids)]})
         return move_line
+
+
+    @api.multi
+    def submit_expenses(self):
+        res = super(HrExpense, self).submit_expenses()
+        res_id = res.get('res_id')
+        if res_id:
+            self.env['hr.expense.sheet'].browse(res_id).\
+                write({'analytic_tag_ids':[(6,0,self[0].analytic_tag_ids.ids)]})
+        return res
+
+
+class HrExpenseSheet(models.Model):
+    _inherit = "hr.expense.sheet"
+
+    analytic_tag_ids = fields.Many2many('account.analytic.tag', string='WKR')
+
+

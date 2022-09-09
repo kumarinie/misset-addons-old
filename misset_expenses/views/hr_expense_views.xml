@@ -25,4 +25,21 @@
                 </xpath>
             </field>
         </record>
+
+        <record id="view_hr_expense_sheet_form_misset_inherited" model="ir.ui.view">
+            <field name="name">hr.expense.sheet.misset.form</field>
+            <field name="model">hr.expense.sheet</field>
+            <field name="inherit_id" ref="nsm_expense.view_hr_expense_sheet_form_nsm_inherited"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='operating_unit_id']" position="attributes">
+                    <attribute name="groups">hr.group_hr_user,hr.group_hr_manager</attribute>
+                </xpath>
+                <xpath expr="//field[@name='operating_unit_id']" position="after">
+                    <field name="analytic_tag_ids" widget="many2many_tags" options="{'no_create_edit': True}" readonly="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <menuitem id="hr_expense.menu_hr_expense_sheet_my_reports" name="Expense Reports"
+                  sequence="1" parent="hr_expense.menu_hr_expense_my_expenses" action="hr_expense.action_hr_expense_sheet_my_all" load_xmlid="True"/>
 </odoo>
