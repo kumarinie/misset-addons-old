@@ -70,6 +70,8 @@ class HrExpense(models.Model):
                 write({'analytic_tag_ids':[(6,0,self[0].analytic_tag_ids.ids)]})
         return res
 
+    price_fixed = fields.Boolean(related='product_id.price_fixed', string='Price Fixed')
+
 
 class HrExpenseSheet(models.Model):
     _inherit = "hr.expense.sheet"

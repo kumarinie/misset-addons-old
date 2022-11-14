@@ -14,6 +14,7 @@
         <record id="misset_expense_hr_expense_form_view" model="ir.ui.view">
             <field name="name">hr.expense.form.misset.expense</field>
             <field name="model">hr.expense</field>
+            <field name="priority">20</field>
             <field name="inherit_id" ref="hr_expense.hr_expense_form_view"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='analytic_account_id']" position="after">
@@ -22,6 +23,12 @@
                 </xpath>
                 <xpath expr="//field[@name='analytic_account_id']" position="attributes">
                     <attribute name="domain">analytic_account_domain</attribute>
+                </xpath>
+                <xpath expr="//field[@name='product_id']" position="after">
+                    <field name="price_fixed" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='unit_amount']" position="attributes">
+                    <attribute name="attrs">{'readonly':['|','&amp;',('price_fixed', '=', False), ('state', 'not in', ('draft', 'refused', 'revise')),'&amp;',('price_fixed', '=', True), ('state', '!=', 'revise')]}</attribute>
                 </xpath>
             </field>
         </record>
