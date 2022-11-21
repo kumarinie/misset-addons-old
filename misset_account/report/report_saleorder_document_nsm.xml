@@ -78,28 +78,28 @@
                         <tr class="border-black">
                             <td><strong>Gross</strong></td>
                             <td class="text-right">
-                                <span t-if="doc.pricelist_id and doc.pricelist_id.currency_id" t-field="doc.pricelist_id.currency_id.symbol"/><span> </span><span t-esc="'%.2f'% doc.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                <span t-if="doc.pricelist_id and doc.pricelist_id.currency_id" t-field="doc.pricelist_id.currency_id.symbol"/><span> </span><span t-esc="'%.2f'% doc.amount_untaxed"/>
                             </td>
                         </tr>
                         <t t-if="doc.display_discount_to_customer">
                             <tr>
                                 <td>Computed discount</td>
                                 <td class="text-right">
-                                    <span t-if="doc.pricelist_id and doc.pricelist_id.currency_id" t-field="doc.pricelist_id.currency_id.symbol"/><span> </span><span t-esc="'%.2f'% tot_Cdiscount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    <span t-if="doc.pricelist_id and doc.pricelist_id.currency_id" t-field="doc.pricelist_id.currency_id.symbol"/><span> </span><span t-esc="'%.2f'% tot_Cdiscount"/>
                                 </td>
                             </tr>
                         </t>
                         <tr>
                             <td><strong>Taxes</strong></td>
                             <td class="text-right">
-                                <span t-if="doc.pricelist_id and doc.pricelist_id.currency_id" t-field="doc.pricelist_id.currency_id.symbol"/><span> </span><span t-esc="'%.2f'% doc.amount_tax" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                <span t-if="doc.pricelist_id and doc.pricelist_id.currency_id" t-field="doc.pricelist_id.currency_id.symbol"/><span> </span><span t-esc="'%.2f'% doc.amount_tax" />
                             </td>
                         </tr>
 
                         <tr class="border-black">
                             <td><strong>Total</strong></td>
                             <td class="text-right">
-                                <span t-if="doc.pricelist_id and doc.pricelist_id.currency_id" t-field="doc.pricelist_id.currency_id.symbol"/><span> </span><span t-esc="'%.2f'% doc.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                <span t-if="doc.pricelist_id and doc.pricelist_id.currency_id" t-field="doc.pricelist_id.currency_id.symbol"/><span> </span><span t-esc="'%.2f'% doc.amount_total" />
                             </td>
                         </tr>
                     </table>
