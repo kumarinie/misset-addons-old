@@ -33,7 +33,7 @@
     'description': "This module adds custmized functioality to report.",
     'author'  : 'Magnus - DK',
     'website' : 'http://www.magnus.nl',
-    'depends' : ['nsm_sale_advertising_order','partner_street_number'],
+    'depends' : ['nsm_sale_advertising_order','partner_street_number', 'partner_contact_gender', 'partner_street_number_extension'],
     'data'    : [
                 'report/misset_report.xml',
                  ],
