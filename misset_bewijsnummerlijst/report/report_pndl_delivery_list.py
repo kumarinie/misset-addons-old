@@ -48,15 +48,15 @@ class NSMDeliveryListReport(ReportXlsx):
                 amount += pLine.line_id.proof_number_amt_payer
 
             records.append(str(blank_details)) #customer.parent full name
-            records.append(str(customer.gender))
-            records.append(str(customer.initials))
-            records.append(str(customer.infix))
-            records.append(str(customer.lastname))
-            records.append(str(customer.street_name))
-            records.append(str(customer.street2))
-            records.append(str(customer.street_number))
-            records.append(str(customer.street_number_extension))
-            records.append(str(_kix_code(customer)))
+            records.append(str(customer.gender or ''))
+            records.append(str(customer.initials or ''))
+            records.append(str(customer.infix or ''))
+            records.append(str(customer.lastname or ''))
+            records.append(str(customer.street_name or ''))
+            records.append(str(customer.street2 or ''))
+            records.append(str(customer.street_number or ''))
+            records.append(str(customer.street_number_extension or ''))
+            records.append(str(_kix_code(customer) or ''))
             records.append(str(customer.city or parent.city or ''))
             records.append(str(customer.country_id.name or parent.country_id.name or ''))
             records.append(amount) #line amount
