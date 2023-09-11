@@ -19,7 +19,7 @@ class NSMDeliveryListReport(ReportXlsx):
 
         def _prepare_data(customer, pLine):
             records = []
-            parent = customer.parent_id
+            parent = customer.parent_id or customer
 
             initial = ''
             firstname = ''
@@ -27,19 +27,19 @@ class NSMDeliveryListReport(ReportXlsx):
             blank_details = ''
             tital = ''
             last_name = ''
-            if parent:
-                if customer.title:
-                    tital = customer.title.name + " "
-                if customer.initials:
-                    initial = customer.initials + " "
-                else:
-                    if customer.firstname:
-                        firstname = customer.firstname + " "
-                if customer.infix:
-                    infix = customer.infix + " "
-                if customer.lastname:
-                    last_name = customer.lastname
-                blank_details = str(tital) + str(initial) + str(firstname) + str(infix) + str(last_name)
+            
+            if parent.title:
+                tital = parent.title.name + " "
+            if parent.initials:
+                initial = parent.initials + " "
+            else:
+                if parent.firstname:
+                    firstname = customer.firstname + " "
+            if parent.infix:
+                infix = customer.infix + " "
+            if parent.lastname:
+                last_name = parent.lastname
+            blank_details = str(tital) + str(initial) + str(firstname) + str(infix) + str(last_name)
 
             amount = 0
             if customer.id in pLine.line_id.proof_number_adv_customer.ids:
