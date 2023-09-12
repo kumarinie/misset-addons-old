@@ -19,7 +19,7 @@ class NSMDeliveryListReport(ReportXlsx):
 
         def _prepare_data(customer, pLine):
             records = []
-            parent = customer.parent_id
+            parent = customer.parent_id or customer
 
             initial = ''
             firstname = ''
@@ -27,19 +27,19 @@ class NSMDeliveryListReport(ReportXlsx):
             blank_details = ''
             tital = ''
             last_name = ''
-            if parent:
-                if customer.title:
-                    tital = customer.title.name + " "
-                if customer.initials:
-                    initial = customer.initials + " "
-                else:
-                    if customer.firstname:
-                        firstname = customer.firstname + " "
-                if customer.infix:
-                    infix = customer.infix + " "
-                if customer.lastname:
-                    last_name = customer.lastname
-                blank_details = str(tital) + str(initial) + str(firstname) + str(infix) + str(last_name)
+            
+            if parent.title:
+                tital = parent.title.name + " "
+            if parent.initials:
+                initial = parent.initials + " "
+            else:
+                if parent.firstname:
+                    firstname = customer.firstname + " "
+            if parent.infix:
+                infix = customer.infix + " "
+            if parent.lastname:
+                last_name = parent.lastname
+            blank_details = str(tital) + str(initial) + str(firstname) + str(infix) + str(last_name)
 
             amount = 0
             if customer.id in pLine.line_id.proof_number_adv_customer.ids:
@@ -48,15 +48,15 @@ class NSMDeliveryListReport(ReportXlsx):
                 amount += pLine.line_id.proof_number_amt_payer
 
             records.append(str(blank_details)) #customer.parent full name
-            records.append(str(customer.gender))
-            records.append(str(customer.initials))
-            records.append(str(customer.infix))
-            records.append(str(customer.lastname))
-            records.append(str(customer.street_name))
-            records.append(str(customer.street2))
-            records.append(str(customer.street_number))
-            records.append(str(customer.street_number_extension))
-            records.append(str(_kix_code(customer)))
+            records.append(str(customer.gender or ''))
+            records.append(str(customer.initials or ''))
+            records.append(str(customer.infix or ''))
+            records.append(str(customer.lastname or ''))
+            records.append(str(customer.street_name or ''))
+            records.append(str(customer.street2 or ''))
+            records.append(str(customer.street_number or ''))
+            records.append(str(customer.street_number_extension or ''))
+            records.append(str(_kix_code(customer) or ''))
             records.append(str(customer.city or parent.city or ''))
             records.append(str(customer.country_id.name or parent.country_id.name or ''))
             records.append(amount) #line amount
