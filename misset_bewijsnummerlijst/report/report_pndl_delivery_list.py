@@ -52,13 +52,13 @@ class NSMDeliveryListReport(ReportXlsx):
             records.append(str(customer.initials or ''))
             records.append(str(customer.infix or ''))
             records.append(str(customer.lastname or ''))
-            records.append(str(customer.street_name or ''))
-            records.append(str(customer.street2 or ''))
+            records.append(str(customer.street_name and customer.street_name.encode('ascii', 'ignore') or ''))
+            records.append(str(customer.street2 and customer.street2.encode('ascii', 'ignore') or ''))
             records.append(str(customer.street_number or ''))
             records.append(str(customer.street_number_extension or ''))
             records.append(str(_kix_code(customer) or ''))
-            records.append(str(customer.city or parent.city or ''))
-            records.append(str(customer.country_id.name or parent.country_id.name or ''))
+            records.append(str(customer.city and customer.city.encode('ascii', 'ignore') or parent.city and parent.city.encode('ascii', 'ignore') or ''))
+            records.append(str(customer.country_id and customer.country_id.name.encode('ascii', 'ignore') or parent.country_id and parent.country_id.name.encode('ascii', 'ignore') or ''))
             records.append(amount) #line amount
             records.append(str(pLine.title.name))
 
