@@ -29,16 +29,16 @@ class NSMDeliveryListReport(ReportXlsx):
             last_name = ''
             
             if parent.title:
-                tital = parent.title.name + " "
+                tital = parent.title.name.encode('ascii', 'ignore') + " "
             if parent.initials:
-                initial = parent.initials + " "
+                initial = parent.initials.encode('ascii', 'ignore') + " "
             else:
                 if parent.firstname:
-                    firstname = customer.firstname + " "
+                    firstname = customer.firstname.encode('ascii', 'ignore') + " "
             if parent.infix:
-                infix = customer.infix + " "
+                infix = customer.infix.encode('ascii', 'ignore') + " "
             if parent.lastname:
-                last_name = parent.lastname
+                last_name = parent.lastname.encode('ascii', 'ignore') or ''
             blank_details = str(tital) + str(initial) + str(firstname) + str(infix) + str(last_name)
 
             amount = 0
@@ -48,11 +48,11 @@ class NSMDeliveryListReport(ReportXlsx):
                 amount += pLine.line_id.proof_number_amt_payer
 
             records.append(str(blank_details)) #customer.parent full name
-            records.append(str(customer.gender or ''))
-            records.append(str(customer.initials or ''))
-            records.append(str(customer.infix or ''))
-            records.append(str(customer.lastname or ''))
-            records.append(str(customer.street_name and customer.street_name.encode('ascii', 'ignore') or ''))
+            records.append(str(customer.gender and customer.gender.encode('ascii', 'ignore') or ''))
+            records.append(str(customer.initials and customer.initials.encode('ascii', 'ignore') or ''))
+            records.append(str(customer.infix and customer.infix.encode('ascii', 'ignore') or ''))
+            records.append(str(customer.lastname and customer.lastname.encode('ascii', 'ignore') or ''))
+            records.append(str(customer.street_name and customer.street_name.encode('ascii', 'ignore') or''))
             records.append(str(customer.street2 and customer.street2.encode('ascii', 'ignore') or ''))
             records.append(str(customer.street_number or ''))
             records.append(str(customer.street_number_extension or ''))
