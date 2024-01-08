@@ -12,7 +12,6 @@ class NSMDeliveryListReport(ReportXlsx):
 
     def generate_xlsx_report(self, workbook, data, proofLines):
 
-        #customer.parent.zip
         def _kix_code(customer):
             nonkix = customer.zip or customer.parent.zip or ''
             kix = nonkix.replace(" ", "")
